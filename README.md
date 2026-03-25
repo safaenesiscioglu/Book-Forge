@@ -1,6 +1,6 @@
 # 📚 Book Forge
 
-**PDF → EPUB & A5 PDF dönüştürücü** — Saf Python. Calibre gerekmez.
+**PDF → EPUB & A5 PDF converter** — Python. No Calibre required..
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue)
 ![Flask](https://img.shields.io/badge/Flask-3.0-green)
@@ -8,36 +8,36 @@
 
 ---
 
-## ✨ Özellikler
+## ✨ Features
 
-- 🔍 **Otomatik OCR** — Taranmış sayfaları metne çevirir (Türkçe + İngilizce karışık)
-- 📖 **EPUB** — Telefon, tablet, e-reader için akıcı format
-- 📄 **A5 PDF** — Roman boyutunda, okunması kolay
-- 🎛️ **Tarayıcı arayüzü** — Sürükle-bırak, canlı log
-- ⚡ **Karışık PDF** — Metin olan sayfalar OCR'ı otomatik atlar
-- 🐍 **Saf Python** — Calibre kurulumu gerekmez
+- 🔍 **Automatic OCR** — Converts scanned pages to text (mixed Turkish and English).
+- 📖 **EPUB** — Smooth format for phones, tablets, and e-readers.
+- 📄 **A5 PDF** — Novel-sized, easy to read.
+- 🎛️ **Browser interface** — Drag-and-drop, live log
+- ⚡ **Advanced PDF** — Pages containing text automatically skip OCR.
+- 🐍 **Python** — Calibre installation is not required.
 
 ---
 
-## 📦 Kullanılan Kütüphaneler
+## 📦 Libraries Used
 
-| Görev | Kütüphane |
+| Duty | Library |
 |---|---|
 | OCR | `ocrmypdf` + Tesseract |
-| PDF okuma | `pymupdf` (fitz) |
-| EPUB oluşturma | `ebooklib` |
-| A5 PDF oluşturma | `reportlab` |
-| Web arayüz | `flask` |
+| PDF reading | `pymupdf` (fitz) |
+| Creating an EPUB | `ebooklib` |
+| Creating an A5 PDF | `reportlab` |
+| Web interface | `flask` |
 
 ---
 
-## 🛠️ Kurulum
+## 🛠️ Installation
 
-### 1. Tesseract kur (sistem uygulaması, bir kez)
+### 1. Install Tesseract (system application, once)
 
 **Windows:**
 → https://github.com/UB-Mannheim/tesseract/wiki
-Kurulumda "Additional language data" → Türkçe'yi seç
+In the installation, select "Additional language data" → Turkish
 
 **macOS:**
 ```bash
@@ -49,42 +49,42 @@ brew install tesseract tesseract-lang
 sudo apt install tesseract-ocr tesseract-ocr-tur tesseract-ocr-eng
 ```
 
-### 2. Python bağımlılıklarını kur
+### 2. Install Python dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Çalıştır
+### 3. Run
 
 ```bash
 python app.py
 ```
 
-Tarayıcıda aç: **http://localhost:5000**
+Open in browser: **http://localhost:5000**
 
 ---
 
-## 🚀 Kullanım
+## 🚀 Usage
 
-1. PDF'i sürükle veya seç
-2. Kitap adı gir (opsiyonel)
-3. Dil seç → Çıktı formatı seç
-4. OCR aç/kapat
-5. **Dönüştür** → İndir
+1. Drag and drop PDF or select PDF
+2. Enter book name (optional)
+3. Select language → Select output format
+4. Turn OCR on/off
+5. **Convert** → Download
 
 ---
 
-## 📂 Proje Yapısı
+## 📂 Project Structure
 
 ```
 bookforge/
-├── app.py           # Flask sunucu
+├── app.py           # Flask server
 ├── converter.py     # PDF → EPUB / A5 PDF pipeline
 ├── templates/
-│   └── index.html   # Arayüz
-├── uploads/         # Geçici yüklemeler (git'e girmez)
-├── output/          # Çıktılar (git'e girmez)
+│   └── index.html   # Interface
+├── uploads/         # Temporary uploads (git'e girmez)
+├── output/          # Outputs (git'e girmez)
 ├── requirements.txt
 └── README.md
 ```
@@ -94,34 +94,34 @@ bookforge/
 ## ⚙️ Pipeline
 
 ```
-PDF Girdi
+PDF Input
   │
-  ├─► ocrmypdf     → Taranmış sayfaları metne çevir (metin olanları atlar)
+  ├─► ocrmypdf     → Convert scanned pages to text (skips pages with text)
   │
-  ├─► pymupdf      → Sayfa sayfa metin çıkar
+  ├─► pymupdf      → Extract text page by page
   │
-  ├─► Bölüm tespiti → Başlık satırlarından bölümlere ayır
+  ├─► Bölüm tespiti → Detect chapters from title lines
   │
-  ├─► ebooklib     → EPUB oluştur
+  ├─► ebooklib     → Create EPUB
   │
-  └─► reportlab    → A5 PDF oluştur (Georgia, justify, 10.5pt)
+  └─► reportlab    → Create A5 PDF (Georgia, justify, 10.5pt)
 ```
 
 ---
 
-## 🔧 Sorun Giderme
+## 🔧 Troubleshooting
 
-**Tesseract bulunamıyor:**
-`tesseract --version` komutu çalışıyor mu? Windows'ta PATH'e eklenmeli.
+**Tesseract not found:**
+Is `tesseract --version` working? On Windows, it must be added to PATH.
 
-**OCR kalitesi düşük:**
-Türkçe dil paketi kurulu olmalı. Kurulumda seçilmemişse tekrar kur.
+**OCR quality is low:**
+Turkish language pack must be installed. If not selected during installation, install again.
 
-**EPUB boş çıkıyor:**
-PDF tamamen görsel (taranmış) olabilir — OCR'yi açık bırak.
+**EPUB is empty:**
+The PDF may be completely visual (scanned) — leave OCR on.
 
 ---
 
-## 📄 Lisans
+## 📄 License
 
 MIT License
